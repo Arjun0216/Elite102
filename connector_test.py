@@ -1,4 +1,5 @@
 # -------------------ESTABLISHING SQL CONNECTION --------------------------
+
 import mysql.connector
 
 connection = mysql.connector.connect(
