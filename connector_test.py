@@ -1,3 +1,18 @@
+from tkinter import *
+class colors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    OKRED = '\u001b[31m'
+    OKPURPLE = '\u001b[35m'
+    OKWHITE = '\u001b[37m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 # -------------------ESTABLISHING SQL CONNECTION --------------------------
 
 import mysql.connector
@@ -70,8 +85,7 @@ def new_account(id, password, name, balance):
 
 
 def customer():
-    
-    credentials = input("Please input your password to get started: ")
+    credentials = input(colors.OKBLUE + "Please input your password to get started: ")
     testQuery = 'SELECT name FROM account_info WHERE password = "' + credentials + '"'
     def name():
         cursor.execute(testQuery)
@@ -114,9 +128,10 @@ def new_customer():
     global current_id
     current_id += 1
     balance = 0
-    name = input("Welcome to Bank of Tomorrow! Let's make a new account. What is your name? ")
+    name = input(colors.OKCYAN + "Welcome to Bank of Tomorrow! Let's make a new account. What is your name? ")
     password = input("Awesome " + name + "! What would you like your password to be? ")
     new_account(current_id, password, name, balance)
+    colors. ENDC
 
 
     
@@ -125,8 +140,9 @@ def new_customer():
 #----------------------------MAIN-----------------------
 
 def main():
-    print("Hello! Welcome to the Bank of Tomorrow's Website!\n")
-    status = input("Are you a new or returning customer? (type n for new or r for returning): ")
+    print("\n")
+    print(colors.UNDERLINE + colors.OKBLUE + colors.BOLD + "Hello! Welcome to the Bank of Tomorrow's Website!\n" + colors.ENDC)
+    status = input(colors.BOLD + colors.OKPURPLE + "Are you a new or returning customer? (type n for new or r for returning): " + colors.ENDC)
     if status == "n":
         new_customer()
     else:
@@ -144,25 +160,3 @@ main()
 connection.commit()
 cursor.close()
 connection.close()
-        
-
-
-
-
-
-"""
-testQuery = ('SELECT * FROM account_info' )
-cursor.execute(testQuery)
-
-for item in cursor:
-    print(item)
-
-
-# insertQuery = ("INSERT INTO sample.board_games (ID, name, description, player_count) VALUES (4, 'uno', 'glglglg', 5);")
-# cursor.execute(insertQuery)
-# cursor.execute(testQuery)
-
-# for item in cursor:
-    # print(item)
-
-"""
