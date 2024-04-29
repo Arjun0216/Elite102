@@ -13,10 +13,12 @@ cursor = connection.cursor()
 # ------------- FUNCTIONS -------------------------------------------
 def check_balance(credentials):
     testQuery = 'SELECT balance FROM account_info WHERE password = "' + credentials + '"'
-    
     cursor.execute(testQuery)
+
     for item in cursor:
         return item
+def make_deposit():
+    ye
     
     
 def employee():
@@ -37,12 +39,12 @@ def customer():
     print("3. Withdraw\n")
 
     choice = input("enter the number of your choice: ")
-    if choice == 1:
-        print("hi")
-        print("Your Balance is $" + str(check_balance(credentials)[0]))
-    if choice == 2:
+    if choice == "1":
+        print("ye")
+        print("Your Balance is $ " + str(check_balance(credentials)[0]))
+    if choice == "2":
         make_deposit()
-    if choice == 3:
+    if choice == "3":
         withdraw()
 
     
@@ -59,6 +61,8 @@ def main():
     else:
         print("invalid")
 main()
+
+
 
 
 
