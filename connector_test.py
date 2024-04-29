@@ -17,10 +17,15 @@ def check_balance(credentials):
 
     for item in cursor:
         return item
-def make_deposit():
-    ye
-    
-    
+def make_deposit(amount, credentials):
+    current_balance = check_balance(credentials)[0]
+    print(type(current_balance))
+    new_balance = current_balance + float(amount)
+    testQuery = 'UPDATE account_info SET balance = "' + str(new_balance) + '" WHERE password = "' + credentials + '"'
+    cursor.execute(testQuery)
+
+    print("Success! Your balance is now $" + str(check_balance(credentials)[0]))
+
 def employee():
     password = input("Enter employee password: ")
     if password == "cheetos":
@@ -41,9 +46,10 @@ def customer():
     choice = input("enter the number of your choice: ")
     if choice == "1":
         print("ye")
-        print("Your Balance is $ " + str(check_balance(credentials)[0]))
+        print("Your Balance is $" + str(check_balance(credentials)[0]))
     if choice == "2":
-        make_deposit()
+        amount = input("How much would you like to deposit? ")
+        make_deposit(amount, credentials)
     if choice == "3":
         withdraw()
 
